@@ -15,20 +15,42 @@ module.exports = (app) => {
     });
 
     //add excerise
-    app.put("/api/workouts/:workout", ({ params, body }, res) => {
+    app.put("/api/workouts/:id", ({ params, body }, res) => {
+        console.log(body); 
         db.Workout.findOneAndUpdate({ _id: params.id },
             { $push: { excercises: body } },
-            { upsert: true, useFindandModify: false },
-            updatedWorkout => {
-                res.json(updatedWorkout);
-            })
+            { new: true, runValidators: true }
+        ).then(dbWorkout => {res.json(dbWorkout)})
     });
 
+    
     //create new workout
     app.post('/api/workouts', (req, res) => {
         db.Workout.create({}).then(newWorkout => {
             res.json(newWorkout);
         });
+    });
+
+    //stats
+    app.get("/api/workouts/range", (req, res) => {
+        db.Workout.find({})
+            .then(data => {
+                console.log(data)
+                res.json(data)
+            })
+            .catch(err => {
+                res.json(err)
+            })
+    });
+
+
+    app.post("/api/workouts/range", (req, res) => {
+        db.Workout.create({})
+            .then(data => res.json(data))
+            console.log(data)
+            .catch(err => {
+                res.json(err)
+            })
     });
 
 }
