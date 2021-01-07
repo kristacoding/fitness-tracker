@@ -32,7 +32,8 @@ module.exports = function (app) {
     // update workout from id and add exercise 
     app.put("/api/workouts/:id", (req, res) => {
         db.Workout.findByIdAndUpdate(
-            { _id: req.params.id }, { exercises: req.body }
+            { _id: req.params.id }, { exercises: req.body },
+            { new: true, runValidators: true }
         ).then((dbWorkout) => {
             res.json(dbWorkout);
         }).catch(err => {
