@@ -35,4 +35,7 @@ Stats Dashboard
 
 ## Deployed Application 
 
-Application did not deploy correctly to Heroku. Please review the video and images to see that locally it performs all the correct routes. 
+Application did not deploy correctly to Heroku. See links:
+https://fitness-tracker-77.herokuapp.com/ and https://fitness-tracker170.herokuapp.com/stats.  
+
+Please review the video and images to see that locally it performs all the correct routes. 
