@@ -1,7 +1,7 @@
 const db = require('../model')
 module.exports = function (app) {
 
-    // create new workout
+    // get all workouts
     app.get("/api/workouts", (req, res) => {
         db.Workout.find({}).then(dbWorkout => {
             res.json(dbWorkout);
@@ -29,7 +29,7 @@ module.exports = function (app) {
         });
     });
 
-    // update workout from id and add exercise 
+    // update workout from an id and add exercise 
     app.put("/api/workouts/:id", (req, res) => {
         db.Workout.findByIdAndUpdate(
             { _id: req.params.id }, { exercises: req.body },
